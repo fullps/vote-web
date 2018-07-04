@@ -1,6 +1,6 @@
 <style lang="less" scoped>
   .console-body {
-    position: absolute;
+    // position: absolute;
     width: 100%;
     left: 0px;
     top: 0px;
@@ -26,7 +26,7 @@
   }
 </style>
 <template>
-    <div class="console-body">
+    <div class="console-body clearfix">
         <console-topbar></console-topbar>
         <console-sidebar></console-sidebar>
         <console-navbar v-show="hasNavbar"></console-navbar>
