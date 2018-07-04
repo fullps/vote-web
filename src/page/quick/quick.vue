@@ -116,15 +116,15 @@
         </el-form-item>
         <el-form-item label="票数比率" required prop="ratio1">
           <span style="font-size: 14px;color: #48576a;margin: 5px;">一等奖</span>
-            <el-input v-model="ruleForm.ratio1" style="width:180px;"></el-input>
+            <el-input v-model.number="ruleForm.ratio1" style="width:180px;"></el-input>
         </el-form-item>
         <el-form-item required prop="ratio2">
           <span style="font-size: 14px;color: #48576a;margin: 5px;">二等奖</span>
-            <el-input v-model="ruleForm.ratio2" style="width:180px;"></el-input>
+            <el-input v-model.number="ruleForm.ratio2" style="width:180px;"></el-input>
         </el-form-item>
         <el-form-item required prop="ratio3">
           <span style="font-size: 14px;color: #48576a;margin: 5px;">三等奖</span>
-            <el-input v-model="ruleForm.ratio3" style="width:180px;"></el-input>
+            <el-input v-model.number="ruleForm.ratio3" style="width:180px;"></el-input>
         </el-form-item>
         </el-form>
               <div slot="footer" class="dialog-footer">
@@ -152,6 +152,14 @@ export default {
     ElButton: Button
   },
   data () {
+    var validateName = (rule, value, callback) => {
+      if (value.match('[\u4e00-\u9fa5]')) {
+        callback();
+      } else {
+        callback(new Error('不允许输入除汉字、数字及下划线、中划线以外的其他符号'));
+        callback();
+      }
+    };
     return {
       active: 1,
       tableData: [],
@@ -177,7 +185,8 @@ export default {
         rules: {
           topicName: [
             { required: true, message: '请输入活动名称', trigger: 'blur' },
-            { min: 3, max: 100, message: '长度在 3 到 100 个字符', trigger: 'blur' }
+            { min: 3, max: 100, message: '长度在 3 到 100 个字符', trigger: 'blur' },
+            { validator: validateName, trigger: 'blur' }
           ],
           topicState: [
             { required: true, message: '请选择投票活动状态', trigger: 'change' }
@@ -189,13 +198,16 @@ export default {
             { type: 'date', required: true, message: '请选择投票结束日期时间', trigger: 'change' }
           ],
           ratio1: [
-            { required: true, message: '请输入一名得奖比率',trigger: 'blur'}
+            { required: true, message: '请输入一名得奖比率'},
+            { type: 'number', message: '年龄必须为数字值'}
           ],
           ratio2: [
-            { required: true, message: '请输入二名得奖比率',trigger: 'blur'}
+            { required: true, message: '请输入二名得奖比率'},
+            { type: 'number', message: '年龄必须为数字值'}
           ],
           ratio3: [
-            { required: true, message: '请输入三名得奖比率',trigger: 'blur'}
+            { required: true, message: '请输入三名得奖比率'},
+            { type: 'number', message: '年龄必须为数字值'}
           ]
         }
     }

@@ -27,11 +27,11 @@
    </div>
   <el-table :data="tableData" border style="width: 100%">
       <el-table-column prop="projectId" label="ID" width="70"> </el-table-column>
-      <el-table-column prop="unitCode" label="研发单位编码1" width="150"> </el-table-column> 
-      <el-table-column prop="groupId" label="分组编号" width="100"> </el-table-column>
       <el-table-column prop="topicName" label="投票主题名称" width="300"> </el-table-column>
-      <el-table-column prop="unitName" label="研发单位名称" width="320"> </el-table-column>
+      <el-table-column prop="groupId" label="分组编号" width="100"> </el-table-column>
       <el-table-column prop="projectName" label="项目名称" width="380"> </el-table-column>
+      <el-table-column prop="unitCode" label="研发单位编码" width="150"> </el-table-column> 
+      <el-table-column prop="unitName" label="研发单位名称" width="320"> </el-table-column>
       <el-table-column prop="crtTm" label="创建时间" width="200"> </el-table-column>
       <el-table-column label="操作" width="200">
         <template scope="scope" style="float:left">
